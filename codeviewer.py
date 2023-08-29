@@ -1,6 +1,9 @@
 import tkinter as tk
 import re
 
+filename = str(input("enter the directory of your file : "))
+
+
 def show_line_content(line):
     line_content_label.config(text=line, font=("Arial", 14), bg="lightblue", relief="solid")
     create_word_buttons(line)
@@ -32,7 +35,7 @@ def create_word_buttons(line):
     line_words = line.strip().split()
     for j, word in enumerate(line_words):
         if not any(char.isalnum() for char in word):
-            continue  # Skip special characters
+            continue 
         word_button = tk.Button(window, text=word, command=lambda word=word: search_and_show_results(word), bg="lightgreen", fg="black", relief="raised")
         word_button.grid(row=i, column=j+1, sticky="w", padx=2, pady=2)
         word_buttons.append(word_button)
@@ -75,7 +78,7 @@ window = tk.Tk()
 window.title("Code Viewer")
 window.configure(bg="#E0B0FF")
 
-with open("hello.txt", "r") as file:
+with open(filename, "r") as file:
     lines = file.readlines()
 
 line_buttons = []
